@@ -57,6 +57,8 @@ public class ProfileFragment extends Fragment {
         textViewUserMail = (TextView) view.findViewById(R.id.textViewUserEmail);
         textViewUserMail.setText(" Welcome "+ user.getEmail());
 
+        loadUserdata(user);
+
         buttonSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

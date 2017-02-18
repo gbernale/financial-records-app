@@ -1,7 +1,6 @@
 package com.bernal.gilberto.firebasesample;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -53,10 +52,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
-        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
+       /* editTextAddress = (EditText) findViewById(R.id.editTextAddress);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        textViewPersons = (TextView) findViewById(R.id.textViewPersons);
+        textViewPersons = (TextView) findViewById(R.id.textViewPersons); */
         buttonSaveData = (Button) findViewById(R.id.buttonSaveData);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -64,9 +63,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         textViewUserMail = (TextView) findViewById(R.id.textViewUserEmail);
         textViewUserMail.setText(" Welcome "+ user.getEmail());
         buttonLogout.setOnClickListener(this);
-        buttonSaveData.setOnClickListener(this);
-        loadUserdata(user);
-    }
+     }
 
     //  added to include menu options
 
@@ -114,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         InsuranceFragment insuranceFragment = new InsuranceFragment();
-        transaction.add(R.id.fragment_container,insuranceFragment,"Insurance");
+        transaction.replace(R.id.fragment_container,insuranceFragment,"Insurance");
         transaction.commit();
     }
 
@@ -123,7 +120,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         ProfileFragment profileFragment = new ProfileFragment();
-        transaction.add(R.id.fragment_container,profileFragment,"Customer Profile");
+        transaction.replace(R.id.fragment_container,profileFragment,"Customer Profile");
         transaction.commit();
 
 
@@ -144,7 +141,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                        String string = "Name: " + client.getUsername() + "\nAddress: " + client.getUseraddress() + "\nTelephone : " + client.getUserPhone() + "\n\n";
 
                         //Displaying it on textview
-                        textViewPersons.setText(string);
+                       // textViewPersons.setText(string);
                     }
                 }}
 
@@ -163,7 +160,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
       if (view == buttonLogout){
-
           firebaseAuth.signOut();
           finish();
           startActivity(new Intent(this, LoginActivity.class));

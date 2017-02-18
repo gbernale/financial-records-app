@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingBottom="6dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="6dp"
     tools:context="com.bernal.gilberto.firebasesample.InsuranceFragment">
 
 
@@ -30,60 +30,70 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edittextCompanyName"
+            android:textSize="12dp"
             android:hint="Insurance Company :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextType"
+            android:textSize="12dp"
             android:hint="Insurance Type :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextContact"
+            android:textSize="12sp"
             android:hint="Agent Name :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextContactPhone"
+            android:textSize="12sp"
             android:hint="Agent Phone Number :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextPolicyNumber"
+            android:textSize="12sp"
             android:hint="Policy Number :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextIssueDate"
+            android:textSize="12sp"
             android:hint="Policy Initial Date :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextExpiryDate"
+            android:textSize="12sp"
             android:hint="Policy Expiry date :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextFaceAmount"
+            android:textSize="12sp"
             android:hint="Policy Face Amount :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextPremium"
+            android:textSize="12sp"
             android:hint="Policy Monthly Premium :"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editTextComments"
+            android:textSize="12sp"
             android:hint="Policy Comments :"/>
 
         <Button
@@ -91,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:textSize="10dp"
             android:id="@+id/buttonSaveData" />
 
         <Button
@@ -98,7 +109,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:textSize="10dp"
             android:id="@+id/buttonLogout" />
 
         </LinearLayout>
-</RelativeLayout>
+
+</ScrollView>
