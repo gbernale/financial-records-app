@@ -44,18 +44,11 @@ public class InsuranceFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_insurance, container, false);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-
-        if (firebaseAuth.getCurrentUser() == null)  // if current user already registered
-        {
-            /*  profile will be here
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), ProfileActivity.class);
-            startActivity(intent);  */
-        }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+         firebaseAuth=FirebaseAuth.getInstance();
+         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
+        TextView tv3 = (TextView) getActivity().findViewById(R.id.tv3);
+        tv3.setVisibility(View.GONE);
         buttonSaveData = (Button) view.findViewById(R.id.buttonSaveData);
         buttonLogout = (Button) view.findViewById(R.id.buttonLogout);
 
@@ -84,19 +77,24 @@ public class InsuranceFragment extends Fragment {
                 Premium = etPremium.getText().toString().trim();
                 Comments = etComments.getText().toString().trim();
 
-
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 InsuranceData datauser = new InsuranceData(CompanyName, Type, Contact, ContactPhone, PolicyNumber, IssueDate, ExpiryDate, FaceAmount, Premium, Comments);
                 DatabaseReference insurance = databaseReference.child("Insurance").child(user.getUid()).push();
                 insurance.setValue(datauser);
                 Toast.makeText(getContext(), "Insurance information saved  .....", Toast.LENGTH_LONG).show();
+                //  after saving the data return to profile activity
+                getActivity().finish();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ProfileActivity.class);
+                startActivity(intent);
+
             }
         });
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             getActivity().finish();
+            getActivity().finish();
             Intent intent = new Intent();
             intent.setClass(getActivity(), ProfileActivity.class);
             startActivity(intent);

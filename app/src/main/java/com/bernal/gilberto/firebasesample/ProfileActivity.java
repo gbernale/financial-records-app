@@ -87,8 +87,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 saveUserData();
                 return true;
             case R.id.logout:
+                firebaseAuth.signOut();
                 finish();
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
+
             default:
                 return super.onOptionsItemSelected(item);
         }

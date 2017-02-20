@@ -41,28 +41,27 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-       firebaseAuth=FirebaseAuth.getInstance();
         view = inflater.inflate(R.layout.fragment_profile, container, false);
+        firebaseAuth=FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        editTextAddress = (EditText) view.findViewById(R.id.editTextAddress);
-        editTextName = (EditText) view.findViewById(R.id.editTextName);
-        editTextPhone = (EditText) view.findViewById(R.id.editTextPhone);
-        textViewPersons = (TextView) view.findViewById(R.id.textViewPersons);
+         FirebaseUser user = firebaseAuth.getCurrentUser();
+        TextView tv3 = (TextView) getActivity().findViewById(R.id.tv3);
+        tv3.setVisibility(View.GONE);
+        buttonLogout = (Button) view.findViewById(R.id.buttonLogout);
         buttonSaveData = (Button) view.findViewById(R.id.buttonSaveData);
 
-        buttonLogout = (Button) view.findViewById(R.id.buttonLogout);
-        textViewUserMail = (TextView) view.findViewById(R.id.textViewUserEmail);
-        textViewUserMail.setText(" Welcome "+ user.getEmail());
-
-        loadUserdata(user);
+       // loadUserdata(user);
 
         buttonSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view2) {
 
+                editTextAddress = (EditText) view.findViewById(R.id.editTextAddress);
+                editTextName = (EditText) view.findViewById(R.id.editTextName);
+                editTextPhone = (EditText) view.findViewById(R.id.editTextPhone);
+                textViewPersons = (TextView) view.findViewById(R.id.textViewPersons);
+               
                 String name = editTextName.getText().toString().trim();
                 String address = editTextAddress.getText().toString().trim();
                 String phone = editTextPhone.getText().toString().trim();
@@ -78,12 +77,13 @@ public class ProfileFragment extends Fragment {
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                getActivity().finish();
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), ProfileActivity.class);
+                startActivity(intent);
             }
         });
-
-
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+     return view;
     }
 
     private void loadUserdata(final FirebaseUser user){
