@@ -84,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 callFragmentInsurance();
                 return true;
             case R.id.add_invest:
-                saveUserData();
+                callFragmentReportData();
                 return true;
             case R.id.logout:
                 firebaseAuth.signOut();
@@ -123,6 +123,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FragmentTransaction transaction = manager.beginTransaction();
         ProfileFragment profileFragment = new ProfileFragment();
         transaction.replace(R.id.fragment_container,profileFragment,"Customer Profile");
+        transaction.commit();
+
+
+    }
+
+    private void callFragmentReportData()
+    {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        ReportDataFragment reportDataFragment = new ReportDataFragment();
+        transaction.replace(R.id.fragment_container,reportDataFragment,"Customer Profile");
         transaction.commit();
 
 
