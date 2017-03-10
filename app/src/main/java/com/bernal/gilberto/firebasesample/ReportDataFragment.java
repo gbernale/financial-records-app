@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,15 +36,15 @@ public class ReportDataFragment extends Fragment {
     private static final String TAG = "ReportDataFragment";
     private  FirebaseUser user;
     private TextView tvsalida;
-    private ArrayList  userInfoList;
     private ListView lv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        userInfoList = new ArrayList();
+//        userInfoList = new ArrayList();
         view = inflater.inflate(R.layout.fragment_report_data, container, false);
+        final ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(view.getContext(), android.R.layout.simple_list_item_1);
         firebaseAuth= FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
@@ -53,8 +54,6 @@ public class ReportDataFragment extends Fragment {
         tvsalida = (TextView) view.findViewById(R.id.tvsalida);
         lv = (ListView) view.findViewById(R.id.lv);
         buttonLogout = (Button) view.findViewById(R.id.buttonLogout);
-
-
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -68,11 +67,13 @@ public class ReportDataFragment extends Fragment {
                     if (postSnapshot.getKey().equals (user.getUid())) {
                         for (DataSnapshot snapshot : postSnapshot.getChildren()) {
                             InsuranceData client = snapshot.getValue(InsuranceData.class);
-                            String string = client.getCompany_name() + "     "+ client.gettype() +"    "+ client.getPolicy_number() +"    "+ client.getFace_amount()+ "\n\n";
-
-                            tvsalida.append(string);
+                            String clientString = client.getCompany_name() + "     "+ client.gettype() +"    "+ client.getPolicy_number() +"    "+ client.getFace_amount()+ "\n\n";
+                            clientAdapter.add(clientString);
+                            //tvsalida.append(string);
 
                         }
+                        lv.setAdapter(clientAdapter);
+
 
                     }
                 }}

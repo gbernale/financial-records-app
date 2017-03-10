@@ -52,10 +52,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
-       /* editTextAddress = (EditText) findViewById(R.id.editTextAddress);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        textViewPersons = (TextView) findViewById(R.id.textViewPersons); */
         buttonSaveData = (Button) findViewById(R.id.buttonSaveData);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -96,17 +92,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void saveUserData() {
-
-        String name = editTextName.getText().toString().trim();
-        String address = editTextAddress.getText().toString().trim();
-        String phone = editTextPhone.getText().toString().trim();
-        UserData datauser = new UserData(name, address, phone);
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference.child("CustomerData").child(user.getUid()).setValue(datauser);
-        Toast.makeText(this, "Profile saved  .....", Toast.LENGTH_LONG).show();
-        loadUserdata(user);
-    }
 
     private void callFragmentInsurance()
     {
@@ -139,7 +124,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void loadUserdata(final FirebaseUser user){
+    /*
+      private void saveUserData() {
+
+        String name = editTextName.getText().toString().trim();
+        String address = editTextAddress.getText().toString().trim();
+        String phone = editTextPhone.getText().toString().trim();
+        UserData datauser = new UserData(name, address, phone);
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference.child("CustomerData").child(user.getUid()).setValue(datauser);
+        Toast.makeText(this, "Profile saved  .....", Toast.LENGTH_LONG).show();
+       // loadUserdata(user);
+    }
+
+     private void loadUserdata(final FirebaseUser user){
 
         databaseReference.addValueEventListener(new ValueEventListener()
         {
@@ -168,7 +166,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         });
 
 
-    }
+    }  */
 
     @Override
     public void onClick(View view) {
@@ -179,7 +177,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
       }
 
         if (view == buttonSaveData){
-            saveUserData();
+           // saveUserData();
         }
     }
 }
